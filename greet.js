@@ -23,17 +23,20 @@ function greetMe() {
  	else if(languagePicked === 'IsiXhosa'){
  		theMessageElem.innerHTML = ('Molo, '+ userName);
  	}
- 	else if(languagePicked === ''){
- 		return 
+ 	
+ 	 
  	}
- 	if(nameEnteredElem.value !== ''){
- 		languagePicked.value = greetCounter++;
- 		counterElem.innerHTML = greetCounter;
-
- 	}
-
- }
+ 
  
 	nameBtnElem.addEventListener('click', greetMe);
-		
-		
+	function upDateCounter(){	
+	if(nameEnteredElem === ''){
+ 	 	return 
+ 	 }
+ 	 else {
+ 	 	greetCounter ++
+ 	 	return counterElem.innerHTML = greetCounter
+ 	 console.log(greetings)	
+ 	 }
+ 	 }	
+ 	 nameBtnElem.addEventListener('click', upDateCounter);
