@@ -2,8 +2,8 @@ var nameBtnElem = document.querySelector('.nameBtn')
 var theMessageElem = document.querySelector('.message')
 var nameEnteredElem = document.querySelector('.nameEntered')
 var greetingMessage = document.querySelector('.counter')
-var counter = {};
-var namesGreeted = [{'name':'lisa'},{'name':'some'},{'name':'kunga'}]
+var counter= [{'name':'lisa'},{'name':'some'},{'name':'kunga'}]
+
 function greetMe() {
 	var languageElem = document.querySelector("input[name='languageType']:checked");
  	var languagePicked = languageElem.value;
@@ -21,16 +21,25 @@ function greetMe() {
  	else if(languagePicked === 'IsiXhosa'){
  		theMessageElem.innerHTML = ('Molo, '+ userName);
  	}
- 	if (nameEnteredElem.value === ''){
-    languagePicked.value = counter++
-    //add an entry for the user that was greeted in the Object Map
-    greetingMessage.innerHTML =  ('total people greeted = ' + counter)
-    
+ 	if(nameEnteredElem.value === ''){
+			 counter++;
+			greetingMessage.innerHTML =  ('total people greeted = ' + nameEnteredElem.value.length)
+		}
+		localStorage.setItem('namesGreeted', JSON.stringify(counter))
 }
-localStorage.setItem('namesGreeted', JSON.stringify(counter))
- 	}
- 
+ 	
 	nameBtnElem.addEventListener('click', greetMe);
+
+function storeName(){
+	let allNames = {
+		'name':nameEnteredElem.value
+	}
+	counter.push(allNames);
+	localStorage.setItem('namesGreeted', JSON.stringify(counter))
+}
+nameBtnElem.addEventListener('click', greetMe);
+
+
 
 	function errorMessageLanguage(languagePicked){
  		if(languagePicked === undefined){
@@ -44,7 +53,7 @@ localStorage.setItem('namesGreeted', JSON.stringify(counter))
  function objectToString (){
 	var namesInArray = JSON.parse(localStorage.getItem('counter'))
 		if(namesInArray === null){
- 			// upDateCounter()
+ 			return
 
  		}
  		else if (namesInArray != null){
@@ -61,7 +70,7 @@ localStorage.setItem('namesGreeted', JSON.stringify(counter))
  				}
  			}
  			if(nameExist === false){
- 				// upDateCounter()
+ 				return
  			}
  		}
 
