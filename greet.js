@@ -2,7 +2,19 @@ var nameBtnElem = document.querySelector('.nameBtn')
 var theMessageElem = document.querySelector('.message')
 var nameEnteredElem = document.querySelector('.nameEntered')
 var greetingMessage = document.querySelector('.counter')
-var counter= [{'name':'lisa'},{'name':'some'},{'name':'kunga'}]
+
+// only use a list
+var namesGreeted = [];
+
+// var names = [];
+
+// have a list of names
+// before adding a name check if the name is already in the list using includes statement on the list
+// only add the name if not already in the list...
+
+// use names.length as your counter value...
+
+// remove all the localStorage code.
 
 function greetMe() {
 	var languageElem = document.querySelector("input[name='languageType']:checked");
@@ -21,59 +33,43 @@ function greetMe() {
  	else if(languagePicked === 'IsiXhosa'){
  		theMessageElem.innerHTML = ('Molo, '+ userName);
  	}
- 	if(nameEnteredElem.value === ''){
-			 counter++;
-			greetingMessage.innerHTML =  ('total people greeted = ' + nameEnteredElem.value.length)
+ 	if(languagePicked === undefined){
+			theMessageElem.innerHTML = ('select a language '+ userName);
+
 		}
-		localStorage.setItem('namesGreeted', JSON.stringify(counter))
-}
+	 }
  	
 	nameBtnElem.addEventListener('click', greetMe);
+	function errorMessageLang(languagePicked){
+		if(languagePicked === undefined){
+			theMessageElem.innerHTML = ('select a language '+ userName);
 
-function storeName(){
-	let allNames = {
-		'name':nameEnteredElem.value
+		}
 	}
-	counter.push(allNames);
-	localStorage.setItem('namesGreeted', JSON.stringify(counter))
-}
-nameBtnElem.addEventListener('click', greetMe);
+	nameBtnElem.addEventListener('click', errorMessageLang);
 
+function counter(languagePicked){
+	
+	if(nameEnteredElem.value === ''){
+		namesGreeted++
+		greetingMessage.innerHTML =  ('total people greeted = ' + namesGreeted)
+		 
+	}
+		
+	}
+	
+nameBtnElem.addEventListener('click', counter);
 
+  	function storesNames(){
+  		let list = [{'name':nameEnteredElem.value}]
 
-	function errorMessageLanguage(languagePicked){
- 		if(languagePicked === undefined){
- 			return 'Please select language'
+  		if(!namesGreeted.includes(list)){
+  			 namesGreeted.push(list)
+//  			// only add the name if not already in the list...
+//  			 nameEnteredElem.value.length
+ 			 localStorage.setItem('namesGreeted', JSON.stringify(namesGreeted));
 
- 		}
- 	}
- 	nameBtnElem.addEventListener('click', greetMe);
+ }
+  	}
+ nameBtnElem.addEventListener('click', storesNames);
 
-
- function objectToString (){
-	var namesInArray = JSON.parse(localStorage.getItem('counter'))
-		if(namesInArray === null){
- 			return
-
- 		}
- 		else if (namesInArray != null){
- 			var nameExist = undefined
- 			for (var i = 0; i < namesInArray.length; i++) {
- 				var eachName = Object.value;
- 				if(userName.toUpperCase()===eachName.toUpperCase()){
- 					nameExist = true
- 					return 
- 				}
- 				else{
- 					nameExist = false
- 					continue
- 				}
- 			}
- 			if(nameExist === false){
- 				return
- 			}
- 		}
-
-	 }
-	 nameBtnElem.addEventListener('click',objectToString )
- 	
