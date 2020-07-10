@@ -2,7 +2,7 @@ var nameBtnElem = document.querySelector('.nameBtn')
 var theMessageElem = document.querySelector('.message')
 var nameEnteredElem = document.querySelector('.nameEntered')
 var greetingMessage = document.querySelector('.counter')
-
+var greetings = names()
 // only use a list
 var namesGreeted = [];
 
@@ -21,40 +21,25 @@ function greetMe() {
  	var languagePicked = languageElem.value;
  	var userName = nameEnteredElem.value;
  	 nameEnteredElem.value = ''
+ 	 greetings.storeName(userName)
 
- 	if(languagePicked === 'English'){
- 		theMessageElem.innerHTML = 'Hi, '+ userName;
+ 	 localStorage.setItem('namesGreeted', JSON.stringify(namesGreeted))
+ 	 // alert(greetings.greeted(languagePicked, userName))
+ 	theMessageElem.innerHTML = greetings.greeted(String(languagePicked), String(userName))
+ 	
 
-}
- 	else if(languagePicked === 'Afrikaans'){
- 		theMessageElem.innerHTML = ('More, '+ userName);
- 	}
-
- 	else if(languagePicked === 'IsiXhosa'){
- 		theMessageElem.innerHTML = ('Molo, '+ userName);
- 	}
- 	if(languagePicked === undefined){
-			theMessageElem.innerHTML = ('select a language '+ userName);
-
-		}
+ 	
 	 }
  	
 	nameBtnElem.addEventListener('click', greetMe);
 	function errorMessageLang(languagePicked){
-		if(languagePicked === undefined){
-			theMessageElem.innerHTML = ('select a language '+ userName);
+			theMessageElem.innerHTML = greetings.errorMsg()
 
-		}
 	}
 	nameBtnElem.addEventListener('click', errorMessageLang);
 
 function counter(languagePicked){
-	
-	if(nameEnteredElem.value === ''){
-		namesGreeted++
-		greetingMessage.innerHTML =  ('total people greeted = ' + namesGreeted)
-		 
-	}
+	greetingMessage.innerHTML = greetings.counter()
 		
 	}
 	
