@@ -2,15 +2,27 @@ function names(varName){
 const namesGreeted = varName || {}
 
 function storeName(userName){
+	// if(userName){
 	if (namesGreeted[userName] === undefined){
      namesGreeted[userName] = 0;
-}   
+// }   
+}
 }
 
 function counter (){
 	return Object.keys(namesGreeted).length
 }
-
+function errorMessage(languagePicked, userName){
+if(!languagePicked && userName === ''){
+	theMessageElem.innerHTML = 'Please enter a name and Select a language!'
+}
+else if(!name){
+	theMessageElem.innerHTML = 'Please enter a name!'
+}
+else if(!languagePicked){
+	theMessageElem.innerHTML = 'Please enter a language!'
+}
+}
 
 function greeted(languagePicked, userName){
 if(languagePicked === 'English'){
@@ -24,16 +36,18 @@ if(languagePicked === 'English'){
  	else if(languagePicked === 'IsiXhosa'){
  		return ('Molo, '+ userName);
  	}
- 	if(languagePicked === null){
-			return ('select a language '+ userName);
-
-		}
 
 	}
+function getNames(){
+	return namesGreeted
+}
+
 return {
 	storeName,
 	counter,
 	greeted,
+	errorMessage,
+	getNames
 	
 
 }

@@ -2,45 +2,68 @@ var nameBtnElem = document.querySelector('.nameBtn')
 var theMessageElem = document.querySelector('.message')
 var nameEnteredElem = document.querySelector('.nameEntered')
 var greetingMessage = document.querySelector('.counter')
-var greetings = names()
 
-var varName = [{name:'lisa'},{name: 'andy'},{name: 'some'},{name: 'kunga'},{name: 'ally'}]
+var resetBtnElem = document.querySelector('.resetBtn')
+
+ var namesStored = {}
+ if(localStorage['varName']){
+namesStored =  JSON.parse(localStorage['varName'])
+ }
+var greetings = names(namesStored)
+
+window.addEventListener('load', function(){
+	greetingMessage.innerHTML = ('total people greeted = ' + greetings.counter())
+})
 
 function greetMe() {
 
 	var languageElem = document.querySelector("input[name='languageType']:checked");
- 	var languagePicked = languageElem.value;
  	var userName = nameEnteredElem.value;
- 	 nameEnteredElem.value = ''
- 	 greetings.storeName(userName)
+ 	if(userName	&& languageElem ){
+ 		nameEnteredElem.value = ''
+	var languagePicked = languageElem.value;
+	greetings.storeName(userName)
 
- 	 localStorage.setItem('varName', JSON.stringify(varName))
- 	 // alert(greetings.greeted(languagePicked, userName))
- 	theMessageElem.innerHTML = greetings.greeted(String(languagePicked), String(userName))
- 	
-	 }
- 	
-	nameBtnElem.addEventListener('click', greetMe);
-	
-function counter(languagePicked){
+
+
 	greetingMessage.innerHTML = ('total people greeted = ' + greetings.counter())
-		
-	}
+	localStorage.setItem('varName', JSON.stringify(greetings.getNames()))
+ 	theMessageElem.innerHTML = greetings.greeted(String(languagePicked), String(userName))
+
+ 	}
+ 	else if(nameEnteredElem.value == ""){
+ theMessageElem.innerHTML = "Please enter a name";
+ return;
+ 
+  	}
+
+  	else if(languageElem.value == null){
+ theMessageElem.innerHTML =  "Please selecte language";
+ return;
+ 
+  	}
+//   	else if(languageElem.value &&  nameEnteredElem.value== ''){
+// 	theMessageElem.innerHTML = 'Please enter a name and Select a language!'
+// 	return;
+// }
+
+ 
+ }
+ // function clearGreetInput(){
+ // 	nameEnteredElem.value = ''
+ // }
+ // nameBtnElem.addEventListener('click', clearGreetInput);
+
+function reset(){
+ localStorage.clear();
+ location.reload()
+
+}
+nameBtnElem.addEventListener('click', greetMe);
+resetBtnElem.addEventListener('click', reset)
 	
-nameBtnElem.addEventListener('click', counter);
 
 
-  	function storesNames(){
-  	   		let list = [{'name':nameEnteredElem.value}]
 
-  		if(!varName.includes(list)){
-  			 varName.push(list)
-  			 console.log(list)
-  			// only add the name if not already in the list...
- 			 nameEnteredElem.value.length
-			 // localStorage.setItem('namesGreeted', JSON.stringify(namesGreeted));
 
-  }
-   	}
-  nameBtnElem.addEventListener('click', storesNames);
 
