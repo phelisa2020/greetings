@@ -49,10 +49,6 @@ function greetMe() {
 
  
  }
- // function clearGreetInput(){
- // 	nameEnteredElem.value = ''
- // }
- // nameBtnElem.addEventListener('click', clearGreetInput);
 
 function reset(){
  localStorage.clear();
