@@ -18,7 +18,7 @@ window.addEventListener('load', function(){
 function greetMe() {
 
 	var languageElem = document.querySelector("input[name='languageType']:checked");
- 	var userName = nameEnteredElem.value;
+ 	var userName = nameEnteredElem.value.toLowerCase();
  	if(userName	&& languageElem ){
  		nameEnteredElem.value = ''
 	var languagePicked = languageElem.value;
@@ -31,21 +31,18 @@ function greetMe() {
  	theMessageElem.innerHTML = greetings.greeted(String(languagePicked), String(userName))
 
  	}
- 	else if(nameEnteredElem.value == ""){
+ 	else if(nameEnteredElem.value === ""){
  theMessageElem.innerHTML = "Please enter a name";
  return;
  
   	}
 
-  	else if(languageElem.value == null){
+  	else if(languageElem === null){
  theMessageElem.innerHTML =  "Please selecte language";
  return;
  
   	}
-//   	else if(languageElem.value &&  nameEnteredElem.value== ''){
-// 	theMessageElem.innerHTML = 'Please enter a name and Select a language!'
-// 	return;
-// }
+
 
  
  }

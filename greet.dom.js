@@ -14,13 +14,13 @@ function counter (){
 }
 function errorMessage(languagePicked, userName){
 if(!languagePicked && userName === ''){
-	theMessageElem.innerHTML = 'Please enter a name and Select a language!'
+	return 'Please enter a name and Select a language!'
 }
 else if(!name){
-	theMessageElem.innerHTML = 'Please enter a name!'
+	return 'Please enter a name!'
 }
 else if(!languagePicked){
-	theMessageElem.innerHTML = 'Please enter a language!'
+	return 'Please enter a language!'
 }
 }
 

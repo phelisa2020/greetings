@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>greetings</title>
+    <title>greetings-tests</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" />
   </head>
@@ -14,10 +14,10 @@
 
     <script class="mocha-init">
       mocha.setup('bdd');
-	  mocha.checkLeaks();
-	  assert  = chai.assert;
+    mocha.checkLeaks();
+    assert  = chai.assert;
     </script>
-    <script src="greet.js"></script>
+    <script src="greet.dom.js"></script>
     <script src="test/greetings.test.js"></script>
 
     
