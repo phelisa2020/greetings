@@ -12,17 +12,7 @@ function storeName(userName){
 function counter (){
 	return Object.keys(namesGreeted).length
 }
-function errorMessage(languagePicked, userName){
-if(!languagePicked && userName === ''){
-	return 'Please enter a name and Select a language!'
-}
-else if(!name){
-	return 'Please enter a name!'
-}
-else if(!languagePicked){
-	return 'Please enter a language!'
-}
-}
+
 
 function greeted(languagePicked, userName){
 if(languagePicked === 'English'){
@@ -46,7 +36,6 @@ return {
 	storeName,
 	counter,
 	greeted,
-	errorMessage,
 	getNames
 	
 
